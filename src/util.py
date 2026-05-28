@@ -3,20 +3,24 @@ import json
 import sys
 
 def loadCSV(file_path):
-    df = pd.read_csv(file_path, header=None)
-    df.columns = ["km", "price"]
+	try:
+		df = pd.read_csv(file_path, header=None)
+	except:
+		print(f"Error: Could not load CSV from {file_path}")
+		sys.exit(1)
+	df.columns = ["km", "price"]
     # df.columns = df.columns.str.strip()
 
-    df["km"] = pd.to_numeric(df["km"], errors="coerce")
-    df["price"] = pd.to_numeric(df["price"], errors="coerce")
-    df = df.dropna()
+	df["km"] = pd.to_numeric(df["km"], errors="coerce")
+	df["price"] = pd.to_numeric(df["price"], errors="coerce")
+	df = df.dropna()
 
     # print (len(df["price"]))
 
-    X = df["km"].to_numpy()
-    y = df["price"].to_numpy()
+	X = df["km"].to_numpy()
+	y = df["price"].to_numpy()
 
-    return X, y
+	return X, y
 
 
 def saveTheta(theta0, theta1, file_path):
