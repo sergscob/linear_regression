@@ -10,9 +10,10 @@ venv:
 		"$(PIP)" install --upgrade pip; \
 		"$(PIP)" install -r requirements.txt; \
 	fi
+	mkdir -p charts
 
 train: venv
-	python3 src/train.py
+	.venv/bin/python src/train.py
 
 predict: venv
-	python3 src/predict.py	
+	.venv/bin/python src/predict.py	

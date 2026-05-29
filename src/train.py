@@ -14,8 +14,8 @@ def main():
 
     theta0 = 0.0
     theta1 = 0.0
-    lr = 0.07
-    epochs = 100
+    lr = 0.1
+    epochs = 120
 
     m = len(X)
     loss_history = []
@@ -30,6 +30,7 @@ def main():
         loss_history.append(loss)
         
         # print(f"Epoch {i+1}/{epochs}, Error: {error.sum()}")
+        
         tmp_theta0 = lr * (1/m) * error.sum()
         tmp_theta1 = lr * (1/m) * (error * X_norm).sum()
 
@@ -43,7 +44,8 @@ def main():
     saveTheta(real_theta0, real_theta1, "data/theta.json")
     plot_scatter(X, y, real_theta0, real_theta1)
     plot_loss(loss_history)
-    print (f"theta0: {real_theta0:.2f}, theta1: {real_theta1:.2f}")
+    print (f"\nEnd of training")
+    print (f"theta0: {real_theta0:.4f}, theta1: {real_theta1:.4f}")
 
     y_pred = real_theta0 + real_theta1 * X
     ss_res = ((y - y_pred) ** 2).sum()
@@ -51,7 +53,7 @@ def main():
 
     r2 = 1 - (ss_res / ss_tot)
 
-    print(f"Presision (R**2): {r2:.2f}")
+    print(f"Precision (R**2): {r2:.2f}")
 
 
 if __name__ == "__main__":

@@ -28,6 +28,7 @@ def plot_loss(loss_history):
     plt.xlabel("Epoch")
     plt.ylabel("Loss")
     plt.title("Loss Curve")
+    plt.ticklabel_format(style='plain', axis='y')
 
     plt.grid(True)
 
