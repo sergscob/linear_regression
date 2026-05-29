@@ -23,9 +23,9 @@ def main():
     # gradient descent
     for i in range(epochs):
 
-        y_pred = theta0 + theta1 *  X_norm
+        estim_y = theta0 + theta1 *  X_norm
 
-        error = y_pred - y 
+        error = estim_y - y 
         loss = (1 / (2 * m)) * (error ** 2).sum()
         loss_history.append(loss)
         
@@ -47,8 +47,8 @@ def main():
     print (f"\nEnd of training")
     print (f"theta0: {real_theta0:.4f}, theta1: {real_theta1:.4f}")
 
-    y_pred = real_theta0 + real_theta1 * X
-    ss_res = ((y - y_pred) ** 2).sum()
+    estim_y = real_theta0 + real_theta1 * X
+    ss_res = ((y - estim_y) ** 2).sum()
     ss_tot = ((y - y.mean()) ** 2).sum()
 
     r2 = 1 - (ss_res / ss_tot)
